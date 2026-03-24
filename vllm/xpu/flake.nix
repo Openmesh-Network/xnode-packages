@@ -23,10 +23,11 @@
               rev = "v${version}";
               hash = "sha256-QiandUzQCU7PenbIO8brhvxu/ffIU+5x/p0XxowXxlc=";
             };
-            buildPhase = "";
+            dontConfigure = true;
+            dontBuild = true;
             installPhase = ''
               mkdir -p $out
-              cp -r ./* $out
+              mv ./* $out
               cp ${./uv.lock} $out/uv.lock
             '';
           };
@@ -447,6 +448,25 @@
                   "-DPTI_ENABLE_LOGGING=ON"
                 ];
               };
+              eth-psm3-fi = pkgs.stdenv.mkDerivation rec {
+                name = "eth-psm3-fi";
+                version = "12.1.0.1";
+
+                src = pkgs.fetchFromGitHub {
+                  owner = "intel";
+                  repo = "eth-psm3-fi";
+                  tag = "v${version}";
+                  hash = "sha256-FU0d64jiFOzuMwu19bZA/B2tSEcH2gENwCcZtSbKrfU=";
+                };
+
+                buildInputs = [
+                  pkgs.rdma-core
+                  pkgs.numactl
+                  pkgs.libuuid
+                ];
+
+                configureFlags = [ "--with-oneapi-ze=${pkgs.level-zero}" ];
+              };
             in
             (final: prev: {
               vllm = prev.vllm.overrideAttrs (old: {
@@ -574,16 +594,12 @@
               impi-rt = prev.impi-rt.overrideAttrs (old: {
                 buildInputs = (old.buildInputs or [ ]) ++ [
                   pkgs.level-zero
+                  pkgs.rdma-core
+                  pkgs.ucx
+                  pkgs.libpsm2
+                  pkgs.numactl
                   intel-oneapi-openmp
-                ];
-                autoPatchelfIgnoreMissingDeps = (old.autoPatchelfIgnoreMissingDeps or [ ]) ++ [
-                  "libefa.so.1"
-                  "libibverbs.so.1"
-                  "librdmacm.so.1"
-                  "libucp.so.0"
-                  "libpsm2.so.2"
-                  "libpsm3-fi.so"
-                  "libnuma.so.1"
+                  eth-psm3-fi
                 ];
                 postInstall = ''
                   rm -rf $out/bin/libfabric
