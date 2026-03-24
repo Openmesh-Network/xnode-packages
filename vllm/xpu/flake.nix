@@ -33,36 +33,32 @@
 
           extraPackageArgs.override =
             let
-              intel-sycl = pkgs.fetchzip {
-                url = "https://github.com/intel/llvm/releases/download/v6.3.0/sycl_linux.tar.gz";
-                hash = "sha256-vJR/dTGp1yoChmK3gyc89QKbQug0dW0AJLV7xuvRDJ4=";
-                stripRoot = false;
-              };
-              intel-oneapi-umf = pkgs.stdenv.mkDerivation rec {
-                pname = "intel-oneapi-umf";
-                version = "1.0-1.0.2-81";
-
-                src = pkgs.fetchurl {
-                  url = "https://apt.repos.intel.com/oneapi/pool/main/${pname}-${version}_amd64.deb";
-                  hash = "sha256-43aT/UUpvHXkyyeB8JO19YsbhfyDf+xilbyLQ5VLa9s=";
+              intel-sycl = pkgs.stdenv.mkDerivation rec {
+                name = "intel-sycl";
+                version = "6.3.0";
+                src = pkgs.fetchzip {
+                  url = "https://github.com/intel/llvm/releases/download/v${version}/sycl_linux.tar.gz";
+                  hash = "sha256-vJR/dTGp1yoChmK3gyc89QKbQug0dW0AJLV7xuvRDJ4=";
+                  stripRoot = false;
                 };
-
-                nativeBuildInputs = [
-                  pkgs.autoPatchelfHook
-                  pkgs.dpkg
-                ];
-                buildInputs = [
-                  pkgs.hwloc
-                ];
-
                 dontConfigure = true;
                 dontBuild = true;
-
-                unpackPhase = "dpkg -x $src ./";
-
+                nativeBuildInputs = [ pkgs.autoPatchelfHook ];
+                buildInputs = [
+                  pkgs.stdenv.cc.cc.lib
+                  pkgs.zlib
+                  pkgs.ocl-icd
+                  pkgs.libxml2_13.out
+                ];
+                autoPatchelfIgnoreMissingDeps = [
+                  "libcuda.so.1"
+                  "libnvidia-ml.so.1"
+                  "libcupti.so.12"
+                  "libamdhip64.so.6"
+                ];
                 installPhase = ''
                   mkdir -p $out
-                  mv opt/intel/oneapi/umf/1.0/lib $out
+                  mv ./* $out
                 '';
               };
               intel-oneapi-runtime-compilers = pkgs.stdenv.mkDerivation rec {
@@ -110,7 +106,7 @@
                   pkgs.stdenv.cc.cc.lib
                   pkgs.libz
                   pkgs.ocl-icd
-                  intel-oneapi-umf
+                  intel-sycl
                   intel-oneapi-runtime-compilers
                 ];
 
@@ -474,7 +470,7 @@
               intel-cmplr-lib-ur = prev.intel-cmplr-lib-ur.overrideAttrs (old: {
                 buildInputs = (old.buildInputs or [ ]) ++ [
                   pkgs.ocl-icd
-                  intel-oneapi-umf
+                  intel-sycl
                   intel-oneapi-runtime-compilers
                 ];
               });
