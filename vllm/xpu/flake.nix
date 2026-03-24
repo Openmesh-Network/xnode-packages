@@ -7,7 +7,7 @@
     inputs:
     let
       name = "vllm";
-      version = "0.17.1";
+      version = "0.18.0";
     in
     inputs.xnode-builders.language.python {
       inherit name version;
@@ -21,7 +21,7 @@
               owner = "vllm-project";
               repo = "vllm";
               rev = "v${version}";
-              hash = "sha256-EZozwA+GIjN8/CBNhtdeM3HsPhVdx1/J0B9gvvn2qKU=";
+              hash = "sha256-QiandUzQCU7PenbIO8brhvxu/ffIU+5x/p0XxowXxlc=";
             };
             buildPhase = "";
             installPhase = ''
@@ -519,6 +519,7 @@
               torchaudio = prev.torchaudio.overrideAttrs (old: {
                 buildInputs = (old.buildInputs or [ ]) ++ [ final.torch ];
                 autoPatchelfIgnoreMissingDeps = (old.autoPatchelfIgnoreMissingDeps or [ ]) ++ [
+                  "libc10.so"
                   "libtorch.so"
                   "libtorch_cpu.so"
                   "libtorch_xpu.so"
