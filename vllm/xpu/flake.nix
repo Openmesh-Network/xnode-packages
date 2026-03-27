@@ -23,6 +23,7 @@
               rev = "v${version}";
               hash = "sha256-QiandUzQCU7PenbIO8brhvxu/ffIU+5x/p0XxowXxlc=";
             };
+            patches = [ ./memory.patch ];
             dontConfigure = true;
             dontBuild = true;
             installPhase = ''
@@ -646,7 +647,6 @@
                   intel-pti
                 ];
               });
-
             });
         };
     };

@@ -1,0 +1,22 @@
+--- a/vllm/__init__.py
++++ b/vllm/__init__.py
+@@ -2,6 +2,19 @@
+ # SPDX-FileCopyrightText: Copyright contributors to the vLLM project
+ """vLLM: a high-throughput and memory-efficient inference engine for LLMs"""
+ 
++import torch
++
++if hasattr(torch, "xpu"):
++    def _patched_mem_get_info(device: int = 0):
++        allocated = torch.xpu.memory_allocated(device)
++        reserved = torch.xpu.memory_reserved(device)
++        # Set total memory here until the Intel drivers are fixed
++        total = int(96 * 1024**3)
++        free = max(total - allocated - reserved, 0)
++        return free, total
++
++    torch.xpu.mem_get_info = _patched_mem_get_info
++
+ # The version.py should be independent library, and we always import the
+ # version library first.  Such assumption is critical for some customization.
+ from .version import __version__, __version_tuple__  # isort:skip
