@@ -7,7 +7,7 @@
     inputs:
     let
       name = "vllm";
-      version = "0.18.0";
+      version = "0.19.0";
     in
     inputs.xnode-builders.language.python {
       inherit name version;
