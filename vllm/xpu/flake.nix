@@ -1,13 +1,14 @@
 {
   inputs = {
     xnode-builders.url = "github:Openmesh-Network/xnode-builders";
+    nixpkgs.follows = "xnode-builders/nixpkgs";
   };
 
   outputs =
     inputs:
     let
       name = "vllm";
-      version = "0.19.0";
+      version = "0.20.2";
     in
     inputs.xnode-builders.language.python {
       inherit name version;
@@ -21,7 +22,7 @@
               owner = "vllm-project";
               repo = "vllm";
               rev = "v${version}";
-              hash = "sha256-QiandUzQCU7PenbIO8brhvxu/ffIU+5x/p0XxowXxlc=";
+              hash = "sha256-NqcziIw7zVu8RmZx2HaZ9BEdLpRlNKVFxccDZZdTQfE=";
             };
             patches = [ ./memory.patch ];
             dontConfigure = true;
@@ -645,6 +646,12 @@
                   intel-oneapi-mkl-sycl-lapack
                   intel-oneapi-ccl
                   intel-pti
+                ];
+              });
+
+              xgrammar = prev.xgrammar.overrideAttrs (old: {
+                autoPatchelfIgnoreMissingDeps = (old.autoPatchelfIgnoreMissingDeps or [ ]) ++ [
+                  "libtvm_ffi.so"
                 ];
               });
             });
