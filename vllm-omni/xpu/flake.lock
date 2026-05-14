@@ -3,10 +3,12 @@
     "cachix": {
       "inputs": {
         "devenv": [
+          "vllm",
           "xnode-builders",
           "crate2nix"
         ],
         "flake-compat": [
+          "vllm",
           "xnode-builders",
           "crate2nix"
         ],
@@ -36,6 +38,7 @@
         "flake-parts": "flake-parts",
         "nix-test-runner": "nix-test-runner",
         "nixpkgs": [
+          "vllm",
           "xnode-builders",
           "nixpkgs"
         ],
@@ -58,6 +61,7 @@
     "devshell": {
       "inputs": {
         "nixpkgs": [
+          "vllm",
           "xnode-builders",
           "crate2nix",
           "nixpkgs"
@@ -80,6 +84,7 @@
     "fenix": {
       "inputs": {
         "nixpkgs": [
+          "vllm",
           "xnode-builders",
           "naersk",
           "nixpkgs"
@@ -117,6 +122,7 @@
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
+          "vllm",
           "xnode-builders",
           "crate2nix",
           "nixpkgs"
@@ -139,6 +145,7 @@
     "git-hooks": {
       "inputs": {
         "flake-compat": [
+          "vllm",
           "xnode-builders",
           "crate2nix",
           "cachix",
@@ -146,6 +153,7 @@
         ],
         "gitignore": "gitignore",
         "nixpkgs": [
+          "vllm",
           "xnode-builders",
           "crate2nix",
           "cachix",
@@ -169,6 +177,7 @@
     "gitignore": {
       "inputs": {
         "nixpkgs": [
+          "vllm",
           "xnode-builders",
           "crate2nix",
           "cachix",
@@ -193,6 +202,7 @@
     "gitignore_2": {
       "inputs": {
         "nixpkgs": [
+          "vllm",
           "xnode-builders",
           "crate2nix",
           "pre-commit-hooks",
@@ -217,6 +227,7 @@
       "inputs": {
         "fenix": "fenix",
         "nixpkgs": [
+          "vllm",
           "xnode-builders",
           "nixpkgs"
         ]
@@ -283,12 +294,14 @@
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": [
+          "vllm",
           "xnode-builders",
           "crate2nix",
           "flake-compat"
         ],
         "gitignore": "gitignore_2",
         "nixpkgs": [
+          "vllm",
           "xnode-builders",
           "crate2nix",
           "nixpkgs"
@@ -311,14 +324,17 @@
     "pyproject-build-systems": {
       "inputs": {
         "nixpkgs": [
+          "vllm",
           "xnode-builders",
           "nixpkgs"
         ],
         "pyproject-nix": [
+          "vllm",
           "xnode-builders",
           "pyproject-nix"
         ],
         "uv2nix": [
+          "vllm",
           "xnode-builders",
           "uv2nix"
         ]
@@ -340,6 +356,7 @@
     "pyproject-nix": {
       "inputs": {
         "nixpkgs": [
+          "vllm",
           "xnode-builders",
           "nixpkgs"
         ]
@@ -361,10 +378,14 @@
     "root": {
       "inputs": {
         "nixpkgs": [
-          "xnode-builders",
+          "vllm",
           "nixpkgs"
         ],
-        "xnode-builders": "xnode-builders"
+        "vllm": "vllm",
+        "xnode-builders": [
+          "vllm",
+          "xnode-builders"
+        ]
       }
     },
     "rust-analyzer-src": {
@@ -402,10 +423,12 @@
     "uv2nix": {
       "inputs": {
         "nixpkgs": [
+          "vllm",
           "xnode-builders",
           "nixpkgs"
         ],
         "pyproject-nix": [
+          "vllm",
           "xnode-builders",
           "pyproject-nix"
         ]
@@ -423,6 +446,25 @@
         "repo": "uv2nix",
         "type": "github"
       }
+    },
+    "vllm": {
+      "inputs": {
+        "nixpkgs": [
+          "vllm",
+          "xnode-builders",
+          "nixpkgs"
+        ],
+        "xnode-builders": "xnode-builders"
+      },
+      "locked": {
+        "path": "../../vllm/xpu",
+        "type": "path"
+      },
+      "original": {
+        "path": "../../vllm/xpu",
+        "type": "path"
+      },
+      "parent": []
     },
     "xnode-builders": {
       "inputs": {
