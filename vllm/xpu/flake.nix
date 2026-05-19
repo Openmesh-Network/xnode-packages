@@ -2,13 +2,17 @@
   inputs = {
     xnode-builders.url = "github:Openmesh-Network/xnode-builders";
     nixpkgs.follows = "xnode-builders/nixpkgs";
+    intel-oneapi-toolkit = {
+      url = "path:../../intel-oneapi-toolkit";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     inputs:
     let
       name = "vllm";
-      version = "0.20.2";
+      version = "0.21.0";
     in
     inputs.xnode-builders.language.python {
       inherit name version;
@@ -22,7 +26,7 @@
               owner = "vllm-project";
               repo = "vllm";
               rev = "v${version}";
-              hash = "sha256-NqcziIw7zVu8RmZx2HaZ9BEdLpRlNKVFxccDZZdTQfE=";
+              hash = "sha256-lVgzo6R+l86IH5yxCtfJckVCP86jlgN7ufF5i0Pn2/A=";
             };
             patches = [ ./memory.patch ];
             dontConfigure = true;
@@ -36,34 +40,8 @@
 
           extraPackageArgs.override =
             let
-              intel-sycl = pkgs.stdenv.mkDerivation rec {
-                name = "intel-sycl";
-                version = "6.3.0";
-                src = pkgs.fetchzip {
-                  url = "https://github.com/intel/llvm/releases/download/v${version}/sycl_linux.tar.gz";
-                  hash = "sha256-vJR/dTGp1yoChmK3gyc89QKbQug0dW0AJLV7xuvRDJ4=";
-                  stripRoot = false;
-                };
-                dontConfigure = true;
-                dontBuild = true;
-                nativeBuildInputs = [ pkgs.autoPatchelfHook ];
-                buildInputs = [
-                  pkgs.stdenv.cc.cc.lib
-                  pkgs.zlib
-                  pkgs.ocl-icd
-                  pkgs.libxml2_13.out
-                ];
-                autoPatchelfIgnoreMissingDeps = [
-                  "libcuda.so.1"
-                  "libnvidia-ml.so.1"
-                  "libcupti.so.12"
-                  "libamdhip64.so.6"
-                ];
-                installPhase = ''
-                  mkdir -p $out
-                  mv ./* $out
-                '';
-              };
+              intel-oneapi-toolkit = inputs.intel-oneapi-toolkit.packages.${pkgs.stdenv.hostPlatform.system};
+              intel-sycl = intel-oneapi-toolkit.intel-sycl;
               intel-oneapi-runtime-compilers = pkgs.stdenv.mkDerivation rec {
                 pname = "intel-oneapi-runtime-compilers";
                 version = "2025.3.1-760";
@@ -299,157 +277,7 @@
                   mv opt/intel/oneapi/ccl/2021.17/lib $out
                 '';
               };
-              unified-memory-framework = pkgs.stdenv.mkDerivation rec {
-                pname = "unified-memory-framework";
-                version = "1.1.0";
-
-                src = pkgs.fetchFromGitHub {
-                  owner = "oneapi-src";
-                  repo = "unified-memory-framework";
-                  rev = "v${version}";
-                  hash = "sha256-1Z65rNsUNeaeSJmxwpEHPbiU4KEDvyrWL9LyAWFsR1c=";
-                };
-
-                nativeBuildInputs = [
-                  pkgs.cmake
-                ];
-
-                buildInputs = [
-                  pkgs.level-zero
-                  pkgs.hwloc
-                  pkgs.numactl
-                  pkgs.onetbb
-                ];
-
-                cmakeFlags = [
-                  "-DUMF_BUILD_SHARED_LIBRARY=ON"
-                  "-DUMF_BUILD_LEVEL_ZERO_PROVIDER=ON"
-                  "-DUMF_BUILD_CUDA_PROVIDER=OFF"
-
-                  "-DUMF_BUILD_TESTS=OFF"
-                  "-DUMF_BUILD_EXAMPLES=OFF"
-
-                  "-DUMF_BUILD_LIBUMF_POOL_DISJOINT=ON"
-                  "-DUMF_LEVEL_ZERO_INCLUDE_DIR=${pkgs.level-zero}/include/level_zero"
-                ];
-
-                postPatch = ''
-                  substituteInPlace cmake/helpers.cmake \
-                    --replace-fail "git describe --always" "echo ${src.rev}"
-                '';
-              };
-              unified-runtime = pkgs.stdenv.mkDerivation {
-                pname = "unified-runtime";
-                version = "0.12.0";
-
-                src = pkgs.fetchFromGitHub {
-                  owner = "intel";
-                  repo = "llvm";
-                  rev = "186cbd82259adde987b3e614708c7a91401d7652";
-                  hash = "sha256-0ySX7G2OE0WixbgO3/IlaQn6YYa8wCGjR1xq3ylbR/U=";
-                };
-
-                sourceRoot = "source/unified-runtime";
-
-                postPatch = ''
-                  substituteInPlace cmake/FetchOpenCL.cmake \
-                      --replace-fail "NO_CMAKE_PACKAGE_REGISTRY" ""
-
-                  rm test/adapters/hip/lit.cfg.py
-                  rm test/adapters/cuda/lit.cfg.py
-
-                  cat >> test/lit.cfg.py <<'EOF'
-                  config.excludes.add('conformance')
-
-                  config.excludes.add('asan.cpp')
-                  config.excludes.add('loader_lifetime.test')
-                  EOF
-                '';
-
-                nativeBuildInputs = [
-                  pkgs.cmake
-                  pkgs.ninja
-                  pkgs.pkg-config
-                  pkgs.python3
-                ];
-
-                buildInputs = [
-                  pkgs.zlib
-                  pkgs.hwloc
-                  pkgs.libbacktrace
-                  pkgs.hdrhistogram_c
-                  pkgs.level-zero
-                  pkgs.intel-compute-runtime
-                  pkgs.opencl-headers
-                  pkgs.ocl-icd
-
-                  pkgs.gtest
-                  pkgs.lit
-                  pkgs.filecheck
-
-                  unified-memory-framework
-                ];
-
-                preCheck = ''
-                  export LD_LIBRARY_PATH="${pkgs.intel-compute-runtime.drivers}/lib''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-                '';
-
-                cmakeFlags = [
-                  (pkgs.lib.cmakeBool "FETCHCONTENT_FULLY_DISCONNECTED" true)
-                  (pkgs.lib.cmakeBool "FETCHCONTENT_QUIET" false)
-                  (pkgs.lib.cmakeBool "UR_ENABLE_LATENCY_HISTOGRAM" true)
-                  (pkgs.lib.cmakeBool "UR_BUILD_TESTS" true)
-                  (pkgs.lib.cmakeBool "UR_BUILD_EXAMPLES" true)
-                  (pkgs.lib.cmakeBool "UR_BUILD_ADAPTER_L0" true)
-                  (pkgs.lib.cmakeBool "UR_BUILD_ADAPTER_L0_V2" true)
-                  (pkgs.lib.cmakeBool "UR_BUILD_ADAPTER_OPENCL" true)
-                  (pkgs.lib.cmakeBool "UR_BUILD_ADAPTER_CUDA" false)
-                  (pkgs.lib.cmakeBool "UR_BUILD_ADAPTER_HIP" false)
-                  (pkgs.lib.cmakeBool "UR_BUILD_ADAPTER_NATIVE_CPU" false)
-                  (pkgs.lib.cmakeFeature "UR_CONFORMANCE_SELECTOR" "native_cpu:*")
-                ];
-              };
-              intel-pti = pkgs.stdenv.mkDerivation rec {
-                pname = "intel-pti";
-                version = "0.15.0";
-
-                src = pkgs.fetchFromGitHub {
-                  owner = "intel";
-                  repo = "pti-gpu";
-                  tag = "pti-${version}";
-                  hash = "sha256-wBVSsCWh7oB7Hpthn4adQsHRJ98XnYCJWP0qrynrTAQ=";
-                };
-
-                sourceRoot = "source/sdk";
-
-                nativeBuildInputs = [
-                  pkgs.cmake
-                  pkgs.pkg-config
-                  pkgs.python3
-                  pkgs.autoAddDriverRunpath
-                ];
-
-                buildInputs = [
-                  (pkgs.level-zero.overrideAttrs (old: rec {
-                    version = "1.24.2";
-                    src = pkgs.fetchFromGitHub {
-                      owner = "oneapi-src";
-                      repo = "level-zero";
-                      tag = "v${version}";
-                      hash = "sha256-5QkXWuMFNsYNsW8lgo9FQIZ5NuLiRZCFKGWedpddi8Y=";
-                    };
-                  }))
-                  pkgs.ocl-icd
-                  pkgs.spdlog
-                  unified-runtime
-                ];
-
-                cmakeFlags = [
-                  "-DPTI_BUILD_TESTING=OFF"
-                  "-DPTI_BUILD_SAMPLES=OFF"
-                  "-DPTI_ENABLE_LOGGING=ON"
-                ];
-              };
+              intel-pti = intel-oneapi-toolkit.intel-pti;
               eth-psm3-fi = pkgs.stdenv.mkDerivation rec {
                 name = "eth-psm3-fi";
                 version = "12.1.0.1";

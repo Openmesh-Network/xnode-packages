@@ -213,6 +213,22 @@
         "type": "github"
       }
     },
+    "intel-oneapi-toolkit": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "path": "../../intel-oneapi-toolkit",
+        "type": "path"
+      },
+      "original": {
+        "path": "../../intel-oneapi-toolkit",
+        "type": "path"
+      },
+      "parent": []
+    },
     "naersk": {
       "inputs": {
         "fenix": "fenix",
@@ -360,6 +376,7 @@
     },
     "root": {
       "inputs": {
+        "intel-oneapi-toolkit": "intel-oneapi-toolkit",
         "nixpkgs": [
           "xnode-builders",
           "nixpkgs"
@@ -435,11 +452,11 @@
         "uv2nix": "uv2nix"
       },
       "locked": {
-        "lastModified": 1778775840,
-        "narHash": "sha256-YVD4QYfnKBH3mkpzKQzJbX/cNx+04ctG3IASNKr2Ld0=",
+        "lastModified": 1779174662,
+        "narHash": "sha256-Th5g1GeRvsqmZ9ahVPmTzV8JK4ksaBt6mIq+q6nzLNM=",
         "owner": "Openmesh-Network",
         "repo": "xnode-builders",
-        "rev": "a92f53f62a2353d39a24434f79e1955fddbb0e3b",
+        "rev": "5e2201494808b0b80d88837e0f6f7112cdd266b0",
         "type": "github"
       },
       "original": {
