@@ -1,10 +1,9 @@
 {
   inputs = {
     xnode-builders.url = "github:Openmesh-Network/xnode-builders";
-    nixpkgs.follows = "xnode-builders/nixpkgs";
     intel-oneapi-toolkit = {
       url = "path:../../intel-oneapi-toolkit";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "xnode-builders/nixpkgs";
     };
   };
 
@@ -25,7 +24,7 @@
             src = pkgs.fetchFromGitHub {
               owner = "vllm-project";
               repo = "vllm";
-              rev = "v${version}";
+              tag = "v${version}";
               hash = "sha256-lVgzo6R+l86IH5yxCtfJckVCP86jlgN7ufF5i0Pn2/A=";
             };
             patches = [ ./memory.patch ];

@@ -2616,7 +2616,7 @@
           src = pkgs.fetchFromGitHub {
             owner = "oneapi-src";
             repo = "unified-memory-framework";
-            rev = "v${version}";
+            tag = "v${version}";
             hash = "sha256-1Z65rNsUNeaeSJmxwpEHPbiU4KEDvyrWL9LyAWFsR1c=";
           };
 

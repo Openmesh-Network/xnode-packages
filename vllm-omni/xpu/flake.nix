@@ -2,7 +2,6 @@
   inputs = {
     vllm.url = "path:../../vllm/xpu";
     xnode-builders.follows = "vllm/xnode-builders";
-    nixpkgs.follows = "vllm/nixpkgs";
   };
 
   outputs =
@@ -22,7 +21,7 @@
             src = pkgs.fetchFromGitHub {
               owner = "vllm-project";
               repo = "vllm-omni";
-              rev = "v${version}";
+              tag = "v${version}";
               hash = "sha256-C3RmvX2p7FzXKfznRq8nCMbYBIefJkUglv9ioyu1vCE=";
             };
             dontConfigure = true;
