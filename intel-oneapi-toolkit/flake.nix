@@ -2649,77 +2649,7 @@
           '';
         };
 
-        unified-runtime = pkgs.stdenv.mkDerivation {
-          pname = "unified-runtime";
-          version = "0.12.0";
-
-          src = pkgs.fetchFromGitHub {
-            owner = "intel";
-            repo = "llvm";
-            rev = "186cbd82259adde987b3e614708c7a91401d7652";
-            hash = "sha256-0ySX7G2OE0WixbgO3/IlaQn6YYa8wCGjR1xq3ylbR/U=";
-          };
-
-          sourceRoot = "source/unified-runtime";
-
-          postPatch = ''
-            substituteInPlace cmake/FetchOpenCL.cmake \
-                --replace-fail "NO_CMAKE_PACKAGE_REGISTRY" ""
-
-            rm test/adapters/hip/lit.cfg.py
-            rm test/adapters/cuda/lit.cfg.py
-
-            cat >> test/lit.cfg.py <<'EOF'
-            config.excludes.add('conformance')
-
-            config.excludes.add('asan.cpp')
-            config.excludes.add('loader_lifetime.test')
-            EOF
-          '';
-
-          nativeBuildInputs = [
-            pkgs.cmake
-            pkgs.ninja
-            pkgs.pkg-config
-            pkgs.python3
-          ];
-
-          buildInputs = [
-            pkgs.zlib
-            pkgs.hwloc
-            pkgs.libbacktrace
-            pkgs.hdrhistogram_c
-            pkgs.level-zero
-            pkgs.intel-compute-runtime
-            pkgs.opencl-headers
-            pkgs.ocl-icd
-
-            pkgs.gtest
-            pkgs.lit
-            pkgs.filecheck
-
-            unified-memory-framework
-          ];
-
-          preCheck = ''
-            export LD_LIBRARY_PATH="${pkgs.intel-compute-runtime.drivers}/lib''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-          '';
-
-          cmakeFlags = [
-            (pkgs.lib.cmakeBool "FETCHCONTENT_FULLY_DISCONNECTED" true)
-            (pkgs.lib.cmakeBool "FETCHCONTENT_QUIET" false)
-            (pkgs.lib.cmakeBool "UR_ENABLE_LATENCY_HISTOGRAM" true)
-            (pkgs.lib.cmakeBool "UR_BUILD_TESTS" true)
-            (pkgs.lib.cmakeBool "UR_BUILD_EXAMPLES" true)
-            (pkgs.lib.cmakeBool "UR_BUILD_ADAPTER_L0" true)
-            (pkgs.lib.cmakeBool "UR_BUILD_ADAPTER_L0_V2" true)
-            (pkgs.lib.cmakeBool "UR_BUILD_ADAPTER_OPENCL" true)
-            (pkgs.lib.cmakeBool "UR_BUILD_ADAPTER_CUDA" false)
-            (pkgs.lib.cmakeBool "UR_BUILD_ADAPTER_HIP" false)
-            (pkgs.lib.cmakeBool "UR_BUILD_ADAPTER_NATIVE_CPU" false)
-            (pkgs.lib.cmakeFeature "UR_CONFORMANCE_SELECTOR" "native_cpu:*")
-          ];
-        };
+        unified-runtime = pkgs.intel-llvm.unified-runtime;
 
         intel-pti = pkgs.stdenv.mkDerivation rec {
           pname = "intel-pti";
