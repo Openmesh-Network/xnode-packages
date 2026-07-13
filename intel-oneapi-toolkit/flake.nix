@@ -24,7 +24,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -38,11 +37,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -67,7 +66,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -82,11 +80,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -112,7 +110,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -126,11 +123,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -155,7 +152,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -169,11 +165,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -198,7 +194,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -213,11 +208,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -243,7 +238,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -258,11 +252,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -288,7 +282,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -303,11 +296,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -333,16 +326,20 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
             pkgs.stdenv.cc.cc.lib
             pkgs.level-zero
             intel-oneapi-openmp-2026_0
+            pkgs.rdma-core   
+            pkgs.numactl    
+            pkgs.libuuid    
+            pkgs.ucx
           ];
           autoPatchelfIgnoreMissingDeps = [
             "libcuda.so.1" # dynamically loaded at runtime depending on hardware
+            "libpsm2.so.2"
           ];
 
           dontConfigure = true;
@@ -352,11 +349,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -381,7 +378,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -396,11 +392,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -426,7 +422,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -445,11 +440,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -475,7 +470,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -491,11 +485,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -522,7 +516,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -537,11 +530,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -567,7 +560,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -582,11 +574,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -612,7 +604,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -630,11 +621,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -660,7 +651,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -676,11 +666,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -706,7 +696,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -723,11 +712,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -755,7 +744,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -771,11 +759,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -800,7 +788,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -816,11 +803,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -847,7 +834,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -861,11 +847,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -890,7 +876,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -908,11 +893,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -941,7 +926,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -957,11 +941,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -988,7 +972,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1003,11 +986,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1033,7 +1016,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1048,11 +1030,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1078,7 +1060,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1095,11 +1076,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1127,7 +1108,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1143,11 +1123,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1174,7 +1154,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1189,11 +1168,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1219,7 +1198,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1234,11 +1212,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1264,7 +1242,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1279,11 +1256,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1308,7 +1285,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1323,11 +1299,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1353,7 +1329,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1368,11 +1343,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1398,7 +1373,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1412,11 +1386,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1441,7 +1415,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1456,11 +1429,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1486,7 +1459,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1502,11 +1474,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1533,7 +1505,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1549,11 +1520,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1580,7 +1551,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1597,11 +1567,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1629,7 +1599,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1645,11 +1614,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1676,7 +1645,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1693,11 +1661,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1725,7 +1693,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1741,11 +1708,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1772,7 +1739,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1788,11 +1754,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1819,7 +1785,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1835,11 +1800,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1866,7 +1831,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1882,11 +1846,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1913,7 +1877,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1935,11 +1898,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1972,7 +1935,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1989,11 +1951,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2024,7 +1986,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2041,11 +2002,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2073,7 +2034,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2088,11 +2048,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2118,7 +2078,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2134,11 +2093,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2165,7 +2124,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2182,11 +2140,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2214,7 +2172,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2230,11 +2187,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2261,7 +2218,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2276,11 +2232,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2306,7 +2262,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2320,11 +2275,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2349,7 +2304,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2365,11 +2319,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2396,7 +2350,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2412,11 +2365,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2443,7 +2396,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2458,11 +2410,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2488,7 +2440,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2503,11 +2454,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2533,7 +2484,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2548,11 +2498,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2599,7 +2549,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2614,11 +2563,11 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin; do
+            for dir in lib share include bin opt; do
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                rsync -a "$found"/ "$out/$dir"/
+                cp -rT "$found" "$out/$dir/"
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2759,7 +2708,6 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
-            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2773,6 +2721,26 @@
             mv ./usr/bin/ocloc-26.18.1 $out/bin/ocloc
             mv ./usr/lib/x86_64-linux-gnu/libocloc.so $out/lib
           '';
+        };
+
+        eth-psm3-fi = pkgs.stdenv.mkDerivation rec {
+          name = "eth-psm3-fi";
+          version = "12.1.0.1";
+
+          src = pkgs.fetchFromGitHub {
+            owner = "intel";
+            repo = "eth-psm3-fi";
+            tag = "v${version}";
+            hash = "sha256-FU0d64jiFOzuMwu19bZA/B2tSEcH2gENwCcZtSbKrfU=";
+          };
+
+          buildInputs = [
+            pkgs.rdma-core
+            pkgs.numactl
+            pkgs.libuuid
+          ];
+
+          configureFlags = [ "--with-oneapi-ze=${pkgs.level-zero}" ];
         };
       };
     };

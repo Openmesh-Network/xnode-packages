@@ -116,7 +116,7 @@ def topo_resolve(root, index):
 # Generic installPhase: finds and merges lib/share/include/bin at any depth
 INSTALL_PHASE = """\
           mkdir -p "$out"
-          for dir in lib share include bin; do
+          for dir in lib share include bin opt; do
             while IFS= read -r found; do
               [ -d "$found" ] || continue
               mkdir -p "$out/$dir"
