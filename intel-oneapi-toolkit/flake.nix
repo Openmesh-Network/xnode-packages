@@ -37,13 +37,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -80,13 +82,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -123,13 +127,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -165,13 +171,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -208,13 +216,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -252,13 +262,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -296,13 +308,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -349,13 +363,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -392,13 +408,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -440,13 +458,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -485,13 +505,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -530,13 +552,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -574,13 +598,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -621,13 +647,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -666,13 +694,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -712,13 +742,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -759,13 +791,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -803,13 +837,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -847,13 +883,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -893,13 +931,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -941,13 +981,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -986,13 +1028,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -1030,13 +1074,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -1076,13 +1122,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -1123,13 +1171,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -1168,13 +1218,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -1212,13 +1264,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -1256,13 +1310,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -1299,13 +1355,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -1343,13 +1401,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -1386,13 +1446,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -1429,13 +1491,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -1474,13 +1538,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -1520,13 +1586,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -1567,13 +1635,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -1614,13 +1684,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -1661,13 +1733,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -1708,13 +1782,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -1754,13 +1830,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -1800,13 +1878,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -1846,13 +1926,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -1898,13 +1980,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -1951,13 +2035,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
 
           postFixup = ''
@@ -2002,13 +2088,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -2048,13 +2136,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -2093,13 +2183,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -2140,13 +2232,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -2187,13 +2281,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -2232,13 +2328,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -2275,13 +2373,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -2319,13 +2419,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -2365,13 +2467,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -2410,13 +2514,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -2454,13 +2560,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -2498,13 +2606,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 
@@ -2563,13 +2673,15 @@
 
           installPhase = ''
             mkdir -p "$out"
-            for dir in lib share include bin opt; do
-              while IFS= read -r found; do
-                [ -d "$found" ] || continue
-                mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
-              done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-            done
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
+              [ -d "$found" ] || continue
+              mkdir -p "$out/$dir"
+              cp -rT "$found" "$out/$dir/"
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )
           '';
         };
 

@@ -115,14 +115,16 @@ def topo_resolve(root, index):
 
 # Generic installPhase: finds and merges lib/share/include/bin at any depth
 INSTALL_PHASE = """\
-          mkdir -p "$out"
-          for dir in lib share include bin opt; do
-            while IFS= read -r found; do
+            mkdir -p "$out"
+            while IFS= read -r -d "" dir && IFS= read -r -d "" found; do
               [ -d "$found" ] || continue
               mkdir -p "$out/$dir"
               cp -rT "$found" "$out/$dir/"
-            done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
-          done"""
+            done < <(
+              find . -mindepth 2 -maxdepth 8 -type d \
+                \( -name lib -o -name share -o -name include -o -name bin -o -name opt \) \
+                -printf '%f\0%p\0' -prune
+            )"""
 
 
 def make_raw_drv(name, info, dep_names):
