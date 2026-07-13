@@ -8,7 +8,7 @@
     inputs:
     let
       name = "vllm-omni";
-      version = "0.21.0rc1";
+      version = "0.25.0rc1";
     in
     inputs.xnode-builders.language.python {
       inherit name version;
@@ -22,7 +22,7 @@
               owner = "vllm-project";
               repo = "vllm-omni";
               tag = "v${version}";
-              hash = "sha256-C3RmvX2p7FzXKfznRq8nCMbYBIefJkUglv9ioyu1vCE=";
+              hash = "sha256-fnb8aNM/QedlTj92qkH7EPYudAdclKgcvGZeL+I/z0c=";
             };
             dontConfigure = true;
             dontBuild = true;
@@ -40,7 +40,7 @@
               vllm-omni = prev.vllm-omni.overrideAttrs (old: {
                 env = (old.env or { }) // {
                   VLLM_OMNI_TARGET_DEVICE = "xpu";
-                  VLLM_OMNI_VERSION_OVERRIDE = version;
+                  VLLM_OMNI_VERSION_OVERRIDE = "v${version}";
                 };
               });
 

@@ -11,7 +11,7 @@
     inputs:
     let
       name = "vllm";
-      version = "0.21.0";
+      version = "0.25.0";
     in
     inputs.xnode-builders.language.python {
       inherit name version;
@@ -25,7 +25,7 @@
               owner = "vllm-project";
               repo = "vllm";
               tag = "v${version}";
-              hash = "sha256-lVgzo6R+l86IH5yxCtfJckVCP86jlgN7ufF5i0Pn2/A=";
+              hash = "sha256-ynETIrqTCkB/oGVLLD9UeKuaV7oYl+neP26b/YJMcxg=";
             };
             patches = [ ./memory.patch ];
             dontConfigure = true;
@@ -298,16 +298,32 @@
               };
             in
             (final: prev: {
-              vllm = prev.vllm.overrideAttrs (old: {
-                buildInputs = (old.buildInputs or [ ]) ++ [
-                  pkgs.libipt
-                ];
+              vllm = prev.vllm.overrideAttrs (
+                old:
+                let
+                  sycl-root = pkgs.symlinkJoin {
+                    name = "sycl-root";
+                    paths = [
+                      intel-oneapi-toolkit.default
+                      intel-sycl
+                    ];
+                  };
+                in
+                {
+                  nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [
+                    sycl-root
+                  ];
+                  buildInputs = (old.buildInputs or [ ]) ++ [
+                    pkgs.libipt
+                  ];
 
-                env = (old.env or { }) // {
-                  VLLM_TARGET_DEVICE = "xpu";
-                  VLLM_VERSION_OVERRIDE = version;
-                };
-              });
+                  env = (old.env or { }) // {
+                    VLLM_TARGET_DEVICE = "xpu";
+                    VLLM_VERSION_OVERRIDE = "v${version}";
+                    SYCL_ROOT = "${sycl-root}";
+                  };
+                }
+              );
 
               intel-pti = prev.intel-pti.overrideAttrs (old: {
                 buildInputs = (old.buildInputs or [ ]) ++ [
@@ -397,6 +413,7 @@
 
               vllm-xpu-kernels = prev.vllm-xpu-kernels.overrideAttrs (old: {
                 buildInputs = (old.buildInputs or [ ]) ++ [
+                  pkgs.level-zero
                   final.torch
                   intel-sycl
                   intel-oneapi-runtime-compilers
@@ -479,6 +496,57 @@
               xgrammar = prev.xgrammar.overrideAttrs (old: {
                 autoPatchelfIgnoreMissingDeps = (old.autoPatchelfIgnoreMissingDeps or [ ]) ++ [
                   "libtvm_ffi.so"
+                ];
+              });
+
+              auto-round-lib = prev.auto-round-lib.overrideAttrs (old: {
+                buildInputs = (old.buildInputs or [ ]) ++ [
+                  pkgs.ocl-icd
+                  intel-sycl
+                  intel-oneapi-compiler-dpcpp-cpp-runtime
+                  intel-oneapi-openmp
+                ];
+              });
+
+              torchcodec = prev.torchcodec.overrideAttrs (old: {
+                buildInputs = (old.buildInputs or [ ]) ++ [
+                  pkgs.ffmpeg_7.lib
+                  pkgs.ffmpeg_8.lib
+                ];
+
+                autoPatchelfIgnoreMissingDeps = (old.autoPatchelfIgnoreMissingDeps or [ ]) ++ [
+                  # FFmpeg 4/5/6 ABI variants — unused, torchcodec probes and skips at runtime
+                  "libavutil.so.56"
+                  "libavcodec.so.58"
+                  "libavformat.so.58"
+                  "libavdevice.so.58"
+                  "libavfilter.so.7"
+                  "libswscale.so.5"
+                  "libswresample.so.3"
+
+                  "libavutil.so.57"
+                  "libavcodec.so.59"
+                  "libavformat.so.59"
+                  "libavdevice.so.59"
+                  "libavfilter.so.8"
+                  "libswscale.so.6"
+
+                  "libavutil.so.58"
+                  "libavcodec.so.60"
+                  "libavformat.so.60"
+                  "libavdevice.so.60"
+                  "libavfilter.so.9"
+                  "libswscale.so.7"
+                  "libswresample.so.4"
+
+                  # CUDA-only torch backend libs — not needed/present on xpu builds
+                  "libtorch.so"
+                  "libtorch_cpu.so"
+                  "libtorch_cuda.so"
+                  "libc10.so"
+                  "libc10_cuda.so"
+                  "libnvrtc.so.13"
+                  "libcudart.so.13"
                 ];
               });
             });
