@@ -549,6 +549,18 @@
                   "libcudart.so.13"
                 ];
               });
+
+              vllm-gguf-plugin = prev.vllm-gguf-plugin.overrideAttrs (old: {
+                buildInputs = (old.buildInputs or [ ]) ++ [ final.torch ];
+                autoPatchelfIgnoreMissingDeps = (old.autoPatchelfIgnoreMissingDeps or [ ]) ++ [
+                  "libc10.so"
+                  "libtorch.so"
+                  "libtorch_cpu.so"
+                  "libcudart.so.13"
+                  "libc10_cuda.so"
+                  "libtorch_cuda.so"
+                ];
+              });
             });
         };
     };
