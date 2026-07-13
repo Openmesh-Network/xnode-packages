@@ -24,6 +24,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -41,7 +42,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -66,6 +67,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -84,7 +86,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -110,6 +112,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -127,7 +130,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -152,6 +155,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -169,7 +173,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -194,6 +198,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -212,7 +217,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -238,6 +243,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -256,7 +262,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -282,6 +288,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -300,7 +307,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -326,6 +333,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -348,7 +356,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -373,6 +381,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -391,7 +400,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -417,6 +426,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -439,7 +449,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -465,6 +475,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -484,7 +495,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -511,6 +522,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -529,7 +541,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -555,6 +567,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -573,7 +586,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -599,6 +612,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -620,7 +634,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -646,6 +660,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -665,7 +680,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -691,6 +706,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -711,7 +727,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -739,11 +755,13 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
             pkgs.stdenv.cc.cc.lib
             pkgs.zlib
+            pkgs.level-zero
           ];
 
           dontConfigure = true;
@@ -757,15 +775,9 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
-          '';
-
-          postFixup = ''
-            # bin/ contains symlinks into opt/debugger/bin/ which is not installed;
-            # remove them to satisfy noBrokenSymlinks
-            find "$out/bin" -xtype l -delete
           '';
         };
 
@@ -788,6 +800,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -807,7 +820,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -834,6 +847,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -851,7 +865,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -876,6 +890,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -897,7 +912,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -926,6 +941,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -945,7 +961,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -972,6 +988,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -990,7 +1007,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1016,6 +1033,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1034,7 +1052,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1060,6 +1078,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1080,7 +1099,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1108,6 +1127,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1127,7 +1147,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1154,6 +1174,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1172,7 +1193,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1198,6 +1219,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1216,7 +1238,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1242,6 +1264,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1260,7 +1283,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1285,6 +1308,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1303,7 +1327,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1329,6 +1353,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1347,7 +1372,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1373,6 +1398,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1390,7 +1416,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1415,6 +1441,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1433,7 +1460,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1459,6 +1486,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1478,7 +1506,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1505,6 +1533,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1524,7 +1553,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1551,6 +1580,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1571,7 +1601,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1599,6 +1629,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1618,7 +1649,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1645,6 +1676,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1665,7 +1697,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1693,6 +1725,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1712,7 +1745,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1739,6 +1772,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1758,7 +1792,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1785,6 +1819,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1804,7 +1839,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1831,6 +1866,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1850,7 +1886,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1877,6 +1913,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1902,7 +1939,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1935,6 +1972,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -1955,7 +1993,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -1986,6 +2024,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2006,7 +2045,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2034,6 +2073,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2052,7 +2092,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2078,6 +2118,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2097,7 +2138,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2124,6 +2165,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2144,7 +2186,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2172,6 +2214,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2191,7 +2234,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2218,6 +2261,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2236,7 +2280,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2262,6 +2306,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2279,7 +2324,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2304,6 +2349,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2323,7 +2369,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2350,6 +2396,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2369,7 +2416,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2396,6 +2443,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2414,7 +2462,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2440,6 +2488,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2458,7 +2507,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2484,6 +2533,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2502,7 +2552,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2549,6 +2599,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
@@ -2567,7 +2618,7 @@
               while IFS= read -r found; do
                 [ -d "$found" ] || continue
                 mkdir -p "$out/$dir"
-                cp -rT "$found" "$out/$dir/"
+                rsync -a "$found"/ "$out/$dir"/
               done < <(find . -mindepth 2 -maxdepth 8 -type d -name "$dir" 2>/dev/null)
             done
           '';
@@ -2708,6 +2759,7 @@
           nativeBuildInputs = [
             pkgs.autoPatchelfHook
             pkgs.dpkg
+            pkgs.rsync
           ];
 
           buildInputs = [
