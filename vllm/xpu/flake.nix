@@ -561,6 +561,37 @@
                   "libtorch_cuda.so"
                 ];
               });
+
+              bitsandbytes = prev.bitsandbytes.overrideAttrs (old: {
+                buildInputs = (old.buildInputs or [ ]) ++ [
+                  intel-sycl
+                  intel-oneapi-compiler-dpcpp-cpp-runtime
+                ];
+                autoPatchelfIgnoreMissingDeps = (old.autoPatchelfIgnoreMissingDeps or [ ]) ++ [
+                  # CUDA backend variants — not needed on xpu, bitsandbytes probes and skips at runtime
+                  "libcudart.so.11.0"
+                  "libcublas.so.11"
+                  "libcublasLt.so.11"
+                  "libcusparse.so.11"
+                  "libcudart.so.12"
+                  "libcublas.so.12"
+                  "libcublasLt.so.12"
+                  "libcusparse.so.12"
+                  "libnvJitLink.so.12"
+                  "libcudart.so.13"
+                  "libcublas.so.13"
+                  "libcublasLt.so.13"
+                  "libnvJitLink.so.13"
+
+                  # ROCm backend variants — not needed on xpu, bitsandbytes probes and skips at runtime
+                  "libhipblas.so.3"
+                  "libhipsparse.so.4"
+                  "libhipblaslt.so.1"
+                  "libhipblas.so.2"
+                  "libhipsparse.so.1"
+                  "libhipblaslt.so.0"
+                ];
+              });
             });
         };
     };
