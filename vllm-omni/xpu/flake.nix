@@ -70,6 +70,25 @@
                   "libtorch_cuda.so"
                 ];
               });
+
+              argbind = prev.argbind.overrideAttrs (old: {
+                buildInputs = (old.buildInputs or [ ]) ++ [
+                  final.setuptools
+                ];
+              });
+
+              pyaudio = prev.pyaudio.overrideAttrs (old: {
+                buildInputs = (old.buildInputs or [ ]) ++ [
+                  pkgs.portaudio
+                  final.setuptools
+                ];
+              });
+
+              randomname = prev.randomname.overrideAttrs (old: {
+                buildInputs = (old.buildInputs or [ ]) ++ [
+                  final.setuptools
+                ];
+              });
             })
           ];
         };

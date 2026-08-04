@@ -9,6 +9,7 @@
       python3
       stdenv.cc.cc.lib
       libz
+      portaudio
     ];
   runScript = "bash";
 }).env
