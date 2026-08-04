@@ -11,7 +11,7 @@
     inputs:
     let
       name = "vllm";
-      version = "0.25.0";
+      version = "0.26.0";
     in
     inputs.xnode-builders.language.python {
       inherit name version;
@@ -25,7 +25,7 @@
               owner = "vllm-project";
               repo = "vllm";
               tag = "v${version}";
-              hash = "sha256-ynETIrqTCkB/oGVLLD9UeKuaV7oYl+neP26b/YJMcxg=";
+              hash = "sha256-jFzV6vQX88FhemF98HmT5j3t6Trj5lXVlym4WD/X+Kw=";
             };
             patches = [ ./memory.patch ];
             dontConfigure = true;
