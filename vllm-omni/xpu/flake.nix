@@ -30,6 +30,9 @@
               mkdir -p $out
               mv ./* $out
               cp ${./uv.lock} $out/uv.lock
+
+              # https://github.com/vllm-project/vllm-omni/issues/4932
+              sed -i 's|\("vllm_omni" = \["_version.py", "py.typed"\]\)|\1\n"vllm_omni.model_executor.stage_configs" = ["*.yaml"]\n"vllm_omni.platforms.xpu" = ["stage_configs/*.yaml"]\n"vllm_omni.model_executor.models.covo_audio" = ["speaker_prompt/*.npy"]\n"vllm_omni.model_executor.models.step_audio2" = ["assets/*.wav"]\n"vllm_omni.experimental.fullduplex" = ["*.md"]|; s|"vllm_omni" = \["_version.py", "py.typed"\]|"vllm_omni" = ["_version.py", "py.typed", "deploy/*.yaml", "deploy/*.md"]|' $out/pyproject.toml
             '';
           };
 
