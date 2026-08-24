@@ -8,7 +8,7 @@
     inputs:
     let
       name = "vllm-omni";
-      version = "0.26.0";
+      version = "0.27.0rc1";
     in
     inputs.xnode-builders.language.python {
       inherit name version;
@@ -22,7 +22,7 @@
               owner = "vllm-project";
               repo = "vllm-omni";
               tag = "v${version}";
-              hash = "sha256-fdoFsnFwqEiq5v1Wdxrrt+Z3E0xqJhEJbLh6XdhdB+k=";
+              hash = "sha256-Dg+mWSpz4YmJ6+PrbvP/67lR2uhtgqNJ6BLDFEVhEQE=";
             };
             dontConfigure = true;
             dontBuild = true;

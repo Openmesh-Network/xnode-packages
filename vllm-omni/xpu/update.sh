@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-VERSION=0.26.0
+VERSION=0.27.0rc1
 
 git clone https://github.com/vllm-project/vllm-omni
 cd vllm-omni

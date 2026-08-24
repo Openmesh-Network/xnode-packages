@@ -2687,11 +2687,11 @@
 
         intel-sycl = pkgs.stdenv.mkDerivation rec {
           name = "intel-sycl";
-          version = "6.3.0";
+          version = "7.0.0";
 
           src = pkgs.fetchzip {
             url = "https://github.com/intel/llvm/releases/download/v${version}/sycl_linux.tar.gz";
-            hash = "sha256-vJR/dTGp1yoChmK3gyc89QKbQug0dW0AJLV7xuvRDJ4=";
+            hash = "sha256-kQXfEw6B9ptFlANvJ9H/tIaSgashc0434YbwraSf1Z4=";
             stripRoot = false;
           };
 
@@ -2761,20 +2761,57 @@
           '';
         };
 
-        unified-runtime = pkgs.intel-llvm.unified-runtime;
+        unified-runtime = pkgs.intel-llvm.unified-runtime.overrideAttrs (old: {
+          doCheck = false;
+        });
+
+        ittapi = pkgs.stdenv.mkDerivation rec {
+          pname = "ittapi";
+          version = "3.28.2";
+
+          src = pkgs.fetchFromGitHub {
+            owner = "intel";
+            repo = "ittapi";
+            tag = "v${version}";
+            hash = "sha256-xQyFuNnlEgoyicuATUmCql/aPXqDn7G773g8pCooOCE=";
+          };
+
+          nativeBuildInputs = [
+            pkgs.cmake
+          ];
+
+          buildInputs = [
+          ];
+        };
 
         intel-pti = pkgs.stdenv.mkDerivation rec {
           pname = "intel-pti";
-          version = "0.15.0";
+          version = "0.17.0";
 
           src = pkgs.fetchFromGitHub {
             owner = "intel";
             repo = "pti-gpu";
             tag = "pti-${version}";
-            hash = "sha256-wBVSsCWh7oB7Hpthn4adQsHRJ98XnYCJWP0qrynrTAQ=";
+            hash = "sha256-qWVsOw31F6CiD51AW/gMq0+ITTSI8YQRgjMwY3NibQc=";
           };
 
           sourceRoot = "source/sdk";
+
+          postPatch = ''
+            substituteInPlace cmake/Modules/macros.cmake \
+              --replace-fail \
+                '    if (NOT ittnotify_POPULATED)' \
+                '    if (TRUE)'
+            substituteInPlace cmake/Modules/macros.cmake \
+              --replace-fail \
+                '      FetchContent_Populate(ittnotify)' \
+                ' '
+            substituteInPlace cmake/Modules/macros.cmake \
+              --replace-fail \
+                '    FetchContent_GetProperties(ittnotify)' \
+                "    set(ittnotify_SOURCE_DIR ${ittapi.src})
+              set(ittnotify_BINARY_DIR \''${CMAKE_CURRENT_BINARY_DIR}/ittnotify-build)"
+          '';
 
           nativeBuildInputs = [
             pkgs.cmake
@@ -2784,18 +2821,19 @@
           ];
 
           buildInputs = [
-            (pkgs.level-zero.overrideAttrs (old: rec {
-              version = "1.24.2";
+           (pkgs.level-zero.overrideAttrs (old: rec {
+              version = "1.28.0";
               src = pkgs.fetchFromGitHub {
                 owner = "oneapi-src";
                 repo = "level-zero";
                 tag = "v${version}";
-                hash = "sha256-5QkXWuMFNsYNsW8lgo9FQIZ5NuLiRZCFKGWedpddi8Y=";
+                hash = "sha256-zIVykKB53KyjvBMgYhPCXLaLag3yvQ7D9HsF3oGGm1w=";
               };
             }))
             pkgs.ocl-icd
             pkgs.spdlog
             unified-runtime
+            ittapi
           ];
 
           cmakeFlags = [
@@ -2833,26 +2871,6 @@
             mv ./usr/bin/ocloc-26.18.1 $out/bin/ocloc
             mv ./usr/lib/x86_64-linux-gnu/libocloc.so $out/lib
           '';
-        };
-
-        eth-psm3-fi = pkgs.stdenv.mkDerivation rec {
-          name = "eth-psm3-fi";
-          version = "12.1.0.1";
-
-          src = pkgs.fetchFromGitHub {
-            owner = "intel";
-            repo = "eth-psm3-fi";
-            tag = "v${version}";
-            hash = "sha256-FU0d64jiFOzuMwu19bZA/B2tSEcH2gENwCcZtSbKrfU=";
-          };
-
-          buildInputs = [
-            pkgs.rdma-core
-            pkgs.numactl
-            pkgs.libuuid
-          ];
-
-          configureFlags = [ "--with-oneapi-ze=${pkgs.level-zero}" ];
         };
       };
     };

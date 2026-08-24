@@ -11,7 +11,7 @@
     inputs:
     let
       name = "vllm";
-      version = "0.26.0";
+      version = "0.27.1";
     in
     inputs.xnode-builders.language.python {
       inherit name version;
@@ -25,7 +25,7 @@
               owner = "vllm-project";
               repo = "vllm";
               tag = "v${version}";
-              hash = "sha256-jFzV6vQX88FhemF98HmT5j3t6Trj5lXVlym4WD/X+Kw=";
+              hash = "sha256-1cl0Cn6nCj2DpP3uNRrtzOdZkO5Vila1GCQGY2xdib4=";
             };
             patches = [ ./memory.patch ];
             dontConfigure = true;
@@ -41,241 +41,16 @@
             let
               intel-oneapi-toolkit = inputs.intel-oneapi-toolkit.packages.${pkgs.stdenv.hostPlatform.system};
               intel-sycl = intel-oneapi-toolkit.intel-sycl;
-              intel-oneapi-runtime-compilers = pkgs.stdenv.mkDerivation rec {
-                pname = "intel-oneapi-runtime-compilers";
-                version = "2025.3.1-760";
-
-                src = pkgs.fetchurl {
-                  url = "https://apt.repos.intel.com/oneapi/pool/main/${pname}-${version}_amd64.deb";
-                  hash = "sha256-Y9xKFiJ025AFcyLnELeOFwQe9JMuokd7EaEwAowpT7c=";
-                };
-
-                nativeBuildInputs = [
-                  pkgs.autoPatchelfHook
-                  pkgs.dpkg
-                ];
-                buildInputs = [
-                  pkgs.stdenv.cc.cc.lib
-                  pkgs.libz
-                ];
-
-                dontConfigure = true;
-                dontBuild = true;
-
-                unpackPhase = "dpkg -x $src ./";
-
-                installPhase = ''
-                  mkdir -p $out
-                  mv opt/intel/oneapi/redist/lib $out
-                '';
-              };
-              intel-oneapi-compiler-dpcpp-cpp-runtime = pkgs.stdenv.mkDerivation rec {
-                pname = "intel-oneapi-compiler-dpcpp-cpp-runtime";
-                version = "2025.3-2025.3.2-832";
-
-                src = pkgs.fetchurl {
-                  url = "https://apt.repos.intel.com/oneapi/pool/main/${pname}-${version}_amd64.deb";
-                  hash = "sha256-ZbOqZqGRxbPfCLo1pk/LQudRiXyjy5CTue5C5T/tqJA=";
-                };
-
-                nativeBuildInputs = [
-                  pkgs.autoPatchelfHook
-                  pkgs.dpkg
-                ];
-                buildInputs = [
-                  pkgs.stdenv.cc.cc.lib
-                  pkgs.libz
-                  pkgs.ocl-icd
-                  intel-sycl
-                  intel-oneapi-runtime-compilers
-                ];
-
-                dontConfigure = true;
-                dontBuild = true;
-
-                unpackPhase = "dpkg -x $src ./";
-
-                installPhase = ''
-                  mkdir -p $out
-                  mv opt/intel/oneapi/compiler/2025.3/lib $out
-                '';
-              };
-              intel-oneapi-openmp = pkgs.stdenv.mkDerivation rec {
-                pname = "intel-oneapi-openmp";
-                version = "2025.3-2025.3.2-832";
-
-                src = pkgs.fetchurl {
-                  url = "https://apt.repos.intel.com/oneapi/pool/main/${pname}-${version}_amd64.deb";
-                  hash = "sha256-wt1g64K4tjoa5E6YvZg7G6HBXhyHzfN5AXIxINYWSj8=";
-                };
-
-                nativeBuildInputs = [
-                  pkgs.autoPatchelfHook
-                  pkgs.dpkg
-                ];
-                buildInputs = [
-                  pkgs.stdenv.cc.cc.lib
-                  pkgs.libz
-                  pkgs.libffi
-                  pkgs.ocl-icd
-                  pkgs.level-zero
-                  intel-sycl
-                  intel-oneapi-runtime-compilers
-                ];
-
-                dontConfigure = true;
-                dontBuild = true;
-
-                unpackPhase = "dpkg -x $src ./";
-
-                installPhase = ''
-                  mkdir -p $out
-                  mv opt/intel/oneapi/compiler/2025.3/lib $out
-                '';
-              };
-              intel-oneapi-mkl-core = pkgs.stdenv.mkDerivation rec {
-                pname = "intel-oneapi-mkl-core";
-                version = "2025.3-2025.3.1-8";
-
-                src = pkgs.fetchurl {
-                  url = "https://apt.repos.intel.com/oneapi/pool/main/${pname}-${version}_amd64.deb";
-                  hash = "sha256-FkhEBmKlFG0gZEVsbnuiOwDb5jy0om41Y+tDtJEqzi8=";
-                };
-
-                nativeBuildInputs = [
-                  pkgs.autoPatchelfHook
-                  pkgs.dpkg
-                ];
-                buildInputs = [
-                  pkgs.stdenv.cc.cc.lib
-                  pkgs.onetbb
-                ];
-
-                dontConfigure = true;
-                dontBuild = true;
-
-                unpackPhase = "dpkg -x $src ./";
-
-                installPhase = ''
-                  mkdir -p $out
-                  mv opt/intel/oneapi/mkl/2025.3/lib $out
-                '';
-              };
-              intel-oneapi-mkl-sycl-blas = pkgs.stdenv.mkDerivation rec {
-                pname = "intel-oneapi-mkl-sycl-blas";
-                version = "2025.3-2025.3.1-8";
-
-                src = pkgs.fetchurl {
-                  url = "https://apt.repos.intel.com/oneapi/pool/main/${pname}-${version}_amd64.deb";
-                  hash = "sha256-3rQTqQmCLBSm7o6ycNXtszUdwcJlYXXvQKf5ngJeaqs=";
-                };
-
-                nativeBuildInputs = [
-                  pkgs.autoPatchelfHook
-                  pkgs.dpkg
-                ];
-                buildInputs = [
-                  pkgs.ocl-icd
-                  intel-sycl
-                ];
-
-                dontConfigure = true;
-                dontBuild = true;
-
-                unpackPhase = "dpkg -x $src ./";
-
-                installPhase = ''
-                  mkdir -p $out
-                  mv opt/intel/oneapi/mkl/2025.3/lib $out
-                '';
-              };
-              intel-oneapi-mkl-sycl-dft = pkgs.stdenv.mkDerivation rec {
-                pname = "intel-oneapi-mkl-sycl-dft";
-                version = "2025.3-2025.3.1-8";
-
-                src = pkgs.fetchurl {
-                  url = "https://apt.repos.intel.com/oneapi/pool/main/${pname}-${version}_amd64.deb";
-                  hash = "sha256-6CWHJoX4uTEw4yyhty0xytgIBC+X+Va16OhgZflNKeg=";
-                };
-
-                nativeBuildInputs = [
-                  pkgs.autoPatchelfHook
-                  pkgs.dpkg
-                ];
-                buildInputs = [
-                  pkgs.ocl-icd
-                  intel-sycl
-                ];
-
-                dontConfigure = true;
-                dontBuild = true;
-
-                unpackPhase = "dpkg -x $src ./";
-
-                installPhase = ''
-                  mkdir -p $out
-                  mv opt/intel/oneapi/mkl/2025.3/lib $out
-                '';
-              };
-              intel-oneapi-mkl-sycl-lapack = pkgs.stdenv.mkDerivation rec {
-                pname = "intel-oneapi-mkl-sycl-lapack";
-                version = "2025.3-2025.3.1-8";
-
-                src = pkgs.fetchurl {
-                  url = "https://apt.repos.intel.com/oneapi/pool/main/${pname}-${version}_amd64.deb";
-                  hash = "sha256-UpbvSpaWiOOvQOvYURYlI+O11PY/6h0vSKjf1qZ1oKU=";
-                };
-
-                nativeBuildInputs = [
-                  pkgs.autoPatchelfHook
-                  pkgs.dpkg
-                ];
-                buildInputs = [
-                  pkgs.ocl-icd
-                  intel-sycl
-                  intel-oneapi-mkl-sycl-blas
-                ];
-
-                dontConfigure = true;
-                dontBuild = true;
-
-                unpackPhase = "dpkg -x $src ./";
-
-                installPhase = ''
-                  mkdir -p $out
-                  mv opt/intel/oneapi/mkl/2025.3/lib $out
-                '';
-              };
-              intel-oneapi-ccl = pkgs.stdenv.mkDerivation rec {
-                pname = "intel-oneapi-ccl";
-                version = "2021.17-2021.17.2-5";
-
-                src = pkgs.fetchurl {
-                  url = "https://apt.repos.intel.com/oneapi/pool/main/${pname}-${version}_amd64.deb";
-                  hash = "sha256-dEztryzSRDCfbRsLsyNpOaj2vtdAaw2lfdTdqfMpa2c=";
-                };
-
-                nativeBuildInputs = [
-                  pkgs.autoPatchelfHook
-                  pkgs.dpkg
-                ];
-                buildInputs = [
-                  pkgs.stdenv.cc.cc.lib
-                  intel-sycl
-                  intel-oneapi-runtime-compilers
-                  intel-oneapi-openmp
-                ];
-
-                dontConfigure = true;
-                dontBuild = true;
-
-                unpackPhase = "dpkg -x $src ./";
-
-                installPhase = ''
-                  mkdir -p $out
-                  mv opt/intel/oneapi/ccl/2021.17/lib $out
-                '';
-              };
+              intel-oneapi-runtime-compilers = intel-oneapi-toolkit.intel-oneapi-runtime-compilers;
+              intel-oneapi-compiler-dpcpp-cpp-runtime =
+                intel-oneapi-toolkit.intel-oneapi-compiler-dpcpp-cpp-runtime-2026_0;
+              intel-oneapi-openmp = intel-oneapi-toolkit.intel-oneapi-openmp-2026_0;
+              intel-oneapi-mkl-core = intel-oneapi-toolkit.intel-oneapi-mkl-core-2026_0;
+              intel-oneapi-mkl-sycl-blas = intel-oneapi-toolkit.intel-oneapi-mkl-sycl-blas-2026_0;
+              intel-oneapi-mkl-sycl-dft = intel-oneapi-toolkit.intel-oneapi-mkl-sycl-dft-2026_0;
+              intel-oneapi-mkl-sycl-lapack = intel-oneapi-toolkit.intel-oneapi-mkl-sycl-lapack-2026_0;
+              intel-oneapi-mpi = intel-oneapi-toolkit.intel-oneapi-mpi-2021_18;
+              intel-oneapi-ccl = intel-oneapi-toolkit.intel-oneapi-ccl-2022_0;
               intel-pti = intel-oneapi-toolkit.intel-pti;
               eth-psm3-fi = pkgs.stdenv.mkDerivation rec {
                 name = "eth-psm3-fi";
@@ -465,6 +240,7 @@
                   intel-sycl
                   intel-oneapi-runtime-compilers
                   intel-oneapi-openmp
+                  intel-oneapi-mpi
                 ];
               });
 
@@ -512,6 +288,9 @@
                 buildInputs = (old.buildInputs or [ ]) ++ [
                   pkgs.ffmpeg_7.lib
                   pkgs.ffmpeg_8.lib
+                  pkgs.ffmpeg.lib
+
+                  pkgs.libheif
                 ];
 
                 autoPatchelfIgnoreMissingDeps = (old.autoPatchelfIgnoreMissingDeps or [ ]) ++ [
@@ -547,49 +326,6 @@
                   "libc10_cuda.so"
                   "libnvrtc.so.13"
                   "libcudart.so.13"
-                ];
-              });
-
-              vllm-gguf-plugin = prev.vllm-gguf-plugin.overrideAttrs (old: {
-                buildInputs = (old.buildInputs or [ ]) ++ [ final.torch ];
-                autoPatchelfIgnoreMissingDeps = (old.autoPatchelfIgnoreMissingDeps or [ ]) ++ [
-                  "libc10.so"
-                  "libtorch.so"
-                  "libtorch_cpu.so"
-                  "libcudart.so.13"
-                  "libc10_cuda.so"
-                  "libtorch_cuda.so"
-                ];
-              });
-
-              bitsandbytes = prev.bitsandbytes.overrideAttrs (old: {
-                buildInputs = (old.buildInputs or [ ]) ++ [
-                  intel-sycl
-                  intel-oneapi-compiler-dpcpp-cpp-runtime
-                ];
-                autoPatchelfIgnoreMissingDeps = (old.autoPatchelfIgnoreMissingDeps or [ ]) ++ [
-                  # CUDA backend variants — not needed on xpu, bitsandbytes probes and skips at runtime
-                  "libcudart.so.11.0"
-                  "libcublas.so.11"
-                  "libcublasLt.so.11"
-                  "libcusparse.so.11"
-                  "libcudart.so.12"
-                  "libcublas.so.12"
-                  "libcublasLt.so.12"
-                  "libcusparse.so.12"
-                  "libnvJitLink.so.12"
-                  "libcudart.so.13"
-                  "libcublas.so.13"
-                  "libcublasLt.so.13"
-                  "libnvJitLink.so.13"
-
-                  # ROCm backend variants — not needed on xpu, bitsandbytes probes and skips at runtime
-                  "libhipblas.so.3"
-                  "libhipsparse.so.4"
-                  "libhipblaslt.so.1"
-                  "libhipblas.so.2"
-                  "libhipsparse.so.1"
-                  "libhipblaslt.so.0"
                 ];
               });
             });
