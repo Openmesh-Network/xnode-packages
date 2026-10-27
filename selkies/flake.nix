@@ -84,20 +84,24 @@
               cp $out/docs/assets/logo/favicon.ico $web/favicon.ico
             '';
           };
-        };
 
-      override = { pkgs, ... }: {
-        common.uv2nix.pythonSet.override = (
-          final: prev: {
-            pixelflux = prev.pixelflux.overrideAttrs (old: {
-              buildInputs = (old.buildInputs or [ ]) ++ [
-                pkgs.libgbm
-                pkgs.pixman
-                pkgs.libxkbcommon
-              ];
-            });
-          }
-        );
-      };
+          override = {
+            common.uv2nix.pythonSet.override = (
+              final: prev: {
+                pixelflux = prev.pixelflux.overrideAttrs (old: {
+                  appendRunpaths = (old.appendRunpaths or [ ]) ++ [
+                    "${pkgs.wayland}/lib"
+                    "${pkgs.libva.out}/lib"
+                  ];
+                  buildInputs = (old.buildInputs or [ ]) ++ [
+                    pkgs.libgbm
+                    pkgs.pixman
+                    pkgs.libxkbcommon
+                  ];
+                });
+              }
+            );
+          };
+        };
     });
 }
