@@ -103,5 +103,35 @@
             );
           };
         };
+      module = {
+        network = false;
+        storage = false;
+        userService = true;
+        options =
+          {
+            lib,
+            ...
+          }:
+          {
+            graphicalSession = {
+              option = {
+                type = lib.types.bool;
+                default = true;
+                example = false;
+                description = ''
+                  Run this service after (as part of) graphical-session.target
+                '';
+              };
+              does =
+                { value, service, ... }:
+                lib.mkIf value (service {
+                  wantedBy = lib.mkForce [ "graphical-session.target" ];
+                  partOf = [ "graphical-session.target" ];
+                  wants = [ "graphical-session.target" ];
+                  after = [ "graphical-session.target" ];
+                });
+            };
+          };
+      };
     });
 }

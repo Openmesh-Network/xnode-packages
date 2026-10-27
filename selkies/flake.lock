@@ -447,11 +447,11 @@
         "uv2nix": "uv2nix"
       },
       "locked": {
-        "lastModified": 1793122462,
-        "narHash": "sha256-IZvQi+wTwbYik5XtIabItbeMac7q6hT5d7mf3x9ISBk=",
+        "lastModified": 1793131191,
+        "narHash": "sha256-aE2hjmeS0yD7TjL5DihEcs+n/4PlVDwn4tfR2hcI25w=",
         "owner": "Openmesh-Network",
         "repo": "xnode-builders",
-        "rev": "d8d983aa86ac670898a7296bb49e6c59c07770b1",
+        "rev": "4b282cd9f8112415aecf232bfeb3e1eae3a4777c",
         "type": "github"
       },
       "original": {
